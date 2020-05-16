@@ -10,9 +10,122 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+const members = [];
+
+const managerQs = [
+  {
+    type: "input",
+    name: "managerName",
+    message: "Who is your manager?",
+  },
+  {
+    type: "input",
+    name: "managerId",
+    message: "What is your manager's id?",
+  },
+  {
+    type: "input",
+    name: "managerEm",
+    message: "What is their email?",
+  },
+  {
+    type: "input",
+    name: "managerPn",
+    message: "What is their office phone number?",
+  },
+];
+
+const buildTeam = [
+  {
+    type: "checkbox",
+    name: "memberChoice",
+    message: "Who's on your team?",
+    choices: [
+      "Engineer",
+      "Intern",
+      "I don't want to add any more team members",
+    ],
+  },
+];
+
+const engineer = [{
+    type: "input",
+    name: "engineerName",
+    message: "What is their name?"
+},
+{
+    type: "input",
+    name: "engineerId",
+    message: "What is their ID number?",  
+},
+{
+    type: "input",
+    name: "engineerEm",
+    message: "What is their email?",
+},
+{
+    type: "input",
+    name: "engineerGithub",
+    message: "What is their GitHub username?"
+}]
+
+const intern =[{
+    type: "input",
+    name: "internName",
+    message: "What is your intern's name?"
+},
+{
+    type: "input",
+    name: "internId",
+    message: "What is your intern's id?" 
+},
+{
+    type: "input",
+    name: "internEmail",
+    message: "What is your intern's email?" 
+},
+{
+    type: "input",
+    name: "internSchool",
+    message: "What is your intern's school?"
+}
+]
+
+function init() {
+  function manager() {
+    inquirer.prompt(managerQs).then((answers) => {
+      const manager = new Manager(
+        answers.managerName,
+        answers.managerId,
+        answers.managerEm,
+        answers.managerPn
+      );
+      members.push(manager);
+    });
+  }
+
+  function teamAdd(){
+      inquirer.prompt(buildTeam).then(choice => {
+
+      })
+  }
+
+  function engineerAdd() {
+      inquirer.prompt(engineer).then((answers) =>{
+
+      })
+  }
+
+  function internAdd(){
+      inquirer.prompt(intern).then((answers) => {
+          
+      })
+  }
+}
+
+init();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
