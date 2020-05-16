@@ -40,7 +40,7 @@ const managerQs = [
 const buildTeam = [
   {
     type: "checkbox",
-    name: "memberChoice",
+    name: "choice",
     message: "Who's on your team?",
     choices: [
       "Engineer",
@@ -50,48 +50,51 @@ const buildTeam = [
   },
 ];
 
-const engineer = [{
+const engineer = [
+  {
     type: "input",
     name: "engineerName",
-    message: "What is their name?"
-},
-{
+    message: "What is their name?",
+  },
+  {
     type: "input",
     name: "engineerId",
-    message: "What is their ID number?",  
-},
-{
+    message: "What is their ID number?",
+  },
+  {
     type: "input",
-    name: "engineerEm",
+    name: "engineerEmail",
     message: "What is their email?",
-},
-{
+  },
+  {
     type: "input",
     name: "engineerGithub",
-    message: "What is their GitHub username?"
-}]
+    message: "What is their GitHub username?",
+  },
+];
 
-const intern =[{
+const intern = [
+  {
     type: "input",
     name: "internName",
-    message: "What is your intern's name?"
-},
-{
+    message: "What is your intern's name?",
+  },
+  {
     type: "input",
     name: "internId",
-    message: "What is your intern's id?" 
-},
-{
+    message: "What is your intern's id?",
+  },
+  {
     type: "input",
     name: "internEmail",
-    message: "What is your intern's email?" 
-},
-{
+    message: "What is your intern's email?",
+  },
+  {
     type: "input",
     name: "internSchool",
-    message: "What is your intern's school?"
-}
-]
+    message: "What is your intern's school?",
+  },
+];
 
 function init() {
   function manager() {
@@ -103,26 +106,49 @@ function init() {
         answers.managerPn
       );
       members.push(manager);
+      teamAdd();
     });
   }
 
-  function teamAdd(){
-      inquirer.prompt(buildTeam).then(choice => {
-
-      })
+  function teamAdd() {
+    inquirer.prompt(buildTeam).then((choice) => {
+      if (choice.choice === "Engineer") {
+        engineerAdd();
+      } else if (choice.choice === "Intern") {
+        internAdd();
+      } else {
+        buildTeam();
+      }
+    });
   }
 
   function engineerAdd() {
-      inquirer.prompt(engineer).then((answers) =>{
-
-      })
+    inquirer.prompt(engineer).then((answers) => {
+      const engineer = new Engineer(
+        answers.engineerName,
+        answers.engineerId,
+        answers.engineerEmail,
+        answers.engineerGithub
+      );
+      members.push(engineer);
+      teamAdd();
+    });
   }
 
-  function internAdd(){
-      inquirer.prompt(intern).then((answers) => {
-          
-      })
+  function internAdd() {
+    inquirer.prompt(intern).then((answers) => {
+      const intern = new Intern(
+        answers.internName,
+        answers.internId,
+        answers.internEmail,
+        answers.internSchool
+      );
+      members.push(intern);
+      teamAdd()
+    });
   }
+
+  manager();
 }
 
 init();
