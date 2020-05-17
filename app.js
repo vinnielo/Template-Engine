@@ -27,12 +27,12 @@ const managerQs = [
   },
   {
     type: "input",
-    name: "managerEm",
+    name: "managerEmail",
     message: "What is their email?",
   },
   {
     type: "input",
-    name: "managerPn",
+    name: "managerNumber",
     message: "What is their office phone number?",
   },
 ];
@@ -50,7 +50,7 @@ const buildTeam = [
   },
 ];
 
-const engineer = [
+const engineerQs = [
   {
     type: "input",
     name: "engineerName",
@@ -73,7 +73,7 @@ const engineer = [
   },
 ];
 
-const intern = [
+const internQs = [
   {
     type: "input",
     name: "internName",
@@ -97,13 +97,13 @@ const intern = [
 ];
 
 function init() {
-  function manager() {
+  function addManager() {
     inquirer.prompt(managerQs).then((answers) => {
       const manager = new Manager(
         answers.managerName,
         answers.managerId,
-        answers.managerEm,
-        answers.managerPn
+        answers.managerEmail,
+        answers.managerNumber
       );
       members.push(manager);
       teamAdd();
@@ -117,13 +117,13 @@ function init() {
       } else if (choice.choice === "Intern") {
         internAdd();
       } else {
-        buildTeam();
+        teamAdd();
       }
     });
   }
 
   function engineerAdd() {
-    inquirer.prompt(engineer).then((answers) => {
+    inquirer.prompt(engineerQs).then((answers) => {
       const engineer = new Engineer(
         answers.engineerName,
         answers.engineerId,
@@ -136,7 +136,7 @@ function init() {
   }
 
   function internAdd() {
-    inquirer.prompt(intern).then((answers) => {
+    inquirer.prompt(internQs).then((answers) => {
       const intern = new Intern(
         answers.internName,
         answers.internId,
@@ -148,7 +148,9 @@ function init() {
     });
   }
 
-  manager();
+
+
+  addManager();
 }
 
 init();
