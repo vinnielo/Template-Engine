@@ -7,8 +7,10 @@ const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
+const outputPath1 = path.join(OUTPUT_DIR, "style.css");
 
 const render = require("./lib/htmlRenderer");
+const renderStyle = require("./lib/cssRender")
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -117,7 +119,8 @@ function init() {
       } else if (choice.choice == "Intern") {
         internAdd();
       } else {
-        createTeam()
+        createTeam();
+        createCss();
       }
     });
   }
@@ -152,8 +155,17 @@ function init() {
     if (!fs.existsSync(OUTPUT_DIR)){
         fs.mkdirSync(OUTPUT_DIR);
     }
-     fs.writeFileSync(outputPath, render(members))
- }
+     fs.writeFileSync(outputPath, render(members));
+    }
+
+  function createCss(){
+    if (!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+     fs.writeFileSync(outputPath1, renderStyle());
+    
+  }  
+    
 
   addManager();
 }
