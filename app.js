@@ -54,7 +54,7 @@ const engineerQs = [
   {
     type: "input",
     name: "engineerName",
-    message: "What is their name?",
+    message: "What is the Engineer's name?",
   },
   {
     type: "input",
@@ -112,12 +112,12 @@ function init() {
 
   function teamAdd() {
     inquirer.prompt(buildTeam).then((choice) => {
-      if (choice.choice === "Engineer") {
+      if (choice.choice == "Engineer") {
         engineerAdd();
-      } else if (choice.choice === "Intern") {
+      } else if (choice.choice == "Intern") {
         internAdd();
       } else {
-        teamAdd();
+        
       }
     });
   }
