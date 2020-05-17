@@ -34,7 +34,7 @@ const managerQs = [
     type: "input",
     name: "managerNumber",
     message: "What is their office phone number?",
-  },
+  }
 ];
 
 const buildTeam = [
@@ -46,8 +46,8 @@ const buildTeam = [
       "Engineer",
       "Intern",
       "I don't want to add any more team members",
-    ],
-  },
+    ]
+  }
 ];
 
 const engineerQs = [
@@ -70,30 +70,30 @@ const engineerQs = [
     type: "input",
     name: "engineerGithub",
     message: "What is their GitHub username?",
-  },
+  }
 ];
 
 const internQs = [
   {
     type: "input",
     name: "internName",
-    message: "What is your intern's name?",
+    message: "What is your Intern's name?",
   },
   {
     type: "input",
     name: "internId",
-    message: "What is your intern's id?",
+    message: "What is their id?",
   },
   {
     type: "input",
     name: "internEmail",
-    message: "What is your intern's email?",
+    message: "What is their email?",
   },
   {
     type: "input",
     name: "internSchool",
-    message: "What is your intern's school?",
-  },
+    message: "What school do they attend?",
+  }
 ];
 
 function init() {
@@ -117,7 +117,7 @@ function init() {
       } else if (choice.choice == "Intern") {
         internAdd();
       } else {
-        
+        createTeam()
       }
     });
   }
@@ -148,7 +148,12 @@ function init() {
     });
   }
 
-
+ function createTeam(){
+    if (!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+     fs.writeFileSync(outputPath, render(members))
+ }
 
   addManager();
 }
