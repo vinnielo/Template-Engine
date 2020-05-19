@@ -18,7 +18,7 @@ WHEN all prompts are answered
 THEN I am asked to add more team members or end the prompts
 WHEN the prompt is ended
 THEN the team.html is created in the output folder and I can view this on my browser
-
+```
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
