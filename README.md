@@ -8,6 +8,7 @@
 
 A node module that allow a user to create a team and add their info in an html page. It uses inquirer to prompt the user for the information. It then uses path and fs to route the answers to the appropriate html template. 
 
+```
 GIVEN I am a manager and need a form to store my teams information
 WHEN I type in "node app.js"
 THEN I am presented with a series of prompts to store my Engineers and Interns information
